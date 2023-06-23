@@ -16,6 +16,7 @@
 
 .choice-text {
   padding: 1.5rem;
+  width: 100%
 }
 
 .choice-container:hover {
@@ -23,4 +24,12 @@
   box-shadow: 0.4rem 1rem 0.5rem rgba(86, 185, 235, 0.5);
   transform: translateY(-0.25rem);
   transition: transform 250ms;
+}
+
+.Correct {
+  background-color: rgb(105, 215, 105);
+}
+
+.InCorrect {
+ background-color: rgb(235, 81, 81);
 }
