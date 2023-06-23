@@ -31,5 +31,65 @@
 }
 
 .InCorrect {
- background-color: rgb(235, 81, 81);
+  background-color: rgb(235, 81, 81);
+}
+
+#hud {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+/* .hud-item {
+  display: flex;
+} */
+
+.hud-prefix {
+  font-weight: 800;
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.hud-maintext {
+  /* position: relative; */
+  /* /* font-size: 3rem; */
+  font-weight: 500;
+  color: #56a5eb;
+  padding: 0rem 2rem;
+  /* margin-left: 1rem; */
+  margin-bottom: 1rem;
+  transition: all 250ms ease-out;
+}
+
+.hud-maintext:hover {
+  /* position: absolute;
+  left: 18%; */
+  /* font-size: 5rem; */
+  font-weight: 700;
+  transform: scale(1.3);
+  border-radius: 1rem;
+  background-color: aliceblue;
+  box-shadow: 0.4rem 1rem 0.5rem rgba(16, 142, 206, 0.5);
+  /* transform: translateY(-0.5rem); */
+  transition: all 250ms ease-in;
+}
+
+#progressBar {
+  width: 20rem;
+  height: 3rem;
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+  border: .3rem solid #56a5eb;
+}
+
+#progressText {
+  font-size: 3rem;
+  font-weight: 800;
+}
+
+#progressBarFull {
+  width: 0%;
+  height: 2.7rem;
+  background-color: #56a5eb;
 }

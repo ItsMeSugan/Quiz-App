@@ -1,5 +1,8 @@
 const question = document.getElementById("question");
 const choices = Array.from(document.getElementsByClassName("choice-text"));
+const progressText = document.getElementById("progressText");
+const scoreText = document.getElementById("score");
+const progressBarFull = document.getElementById("progressBarFull");
 
 let currentQuestion = {};
 let acceptIngAnswer = false;
@@ -37,7 +40,7 @@ let questions = [
 
 // constant //
 
-const correctBonus = 10;
+const currentBonus = 10;
 const maxQuestions = 3;
 
 startGame = () => {
@@ -53,6 +56,10 @@ getNewQuestion = () => {
     // if so terminate the function and locate to different page
     return window.location.assign("end.html");
   }
+
+  // HUD //
+  // changing question number accordingly in DOM
+  progressText.innerText = `Question : ${questionCounter} / ${maxQuestions}`;
 
   // // CHANGE A RANDOM QUESTION IN DOM // //
   // increse the counter + 1
@@ -87,16 +94,32 @@ choices.forEach((choice) => {
     // console.log(selectedChoice);
     const selectedAnswer = selectedChoice.dataset["number"];
     //  Using ternary to find the correct answer
-    const clickToApply =
+    const classToApply =
       currentQuestion.answer == selectedAnswer ? "Correct" : "InCorrect";
-      // Adding the class in its parent element to change its style property
-    selectedChoice.parentElement.classList.add(clickToApply);
+
+    // HUD //
+    // Increase score if the condition is correct
+    if (classToApply === "Correct") {
+      incrementScore(currentBonus);
+      progressBarFull.style.width = `${
+        (questionCounter / maxQuestions) * 100
+      }%`;
+    }
+    // Adding the class in its parent element to change its style property
+    selectedChoice.parentElement.classList.add(classToApply);
     // After 1 sec removing the class in its parent element to change its style property and call the function to get the next question
     setTimeout(() => {
-      selectedChoice.parentElement.classList.remove(clickToApply);
+      selectedChoice.parentElement.classList.remove(classToApply);
       getNewQuestion();
     }, 1000);
   });
 });
+
+// HUD //
+// function used to increse the score
+const incrementScore = function (num) {
+  score += num;
+  scoreText.innerText = score;
+};
 
 startGame();
