@@ -50,6 +50,7 @@ startGame = () => {
 getNewQuestion = () => {
   // check if we crossed the maximum question limit and if the array is empty
   if (availableQuestions.length === 0 || questionCounter >= maxQuestions) {
+    localStorage.setItem("mostRecentScore", score);
     // if so terminate the function and locate to different page
     return window.location.assign("end.html");
   }
@@ -89,7 +90,7 @@ choices.forEach((choice) => {
     //  Using ternary to find the correct answer
     const clickToApply =
       currentQuestion.answer == selectedAnswer ? "Correct" : "InCorrect";
-      // Adding the class in its parent element to change its style property
+    // Adding the class in its parent element to change its style property
     selectedChoice.parentElement.classList.add(clickToApply);
     // After 1 sec removing the class in its parent element to change its style property and call the function to get the next question
     setTimeout(() => {
