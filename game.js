@@ -5,7 +5,7 @@ const scoreText = document.getElementById("score");
 const progressBarFull = document.getElementById("progressBarFull");
 
 let currentQuestion = {};
-let acceptIngAnswer = false;
+let acceptingAnswer = false;
 let score = 0;
 let questionCounter = 0;
 let availableQuestions = [];
@@ -57,21 +57,23 @@ getNewQuestion = () => {
     return window.location.assign("end.html");
   }
 
-  // HUD //
-  // changing question number accordingly in DOM
-  progressText.innerText = `Question : ${questionCounter} / ${maxQuestions}`;
-
   // // CHANGE A RANDOM QUESTION IN DOM // //
+
   // increse the counter + 1
   questionCounter++;
   // get a random number and store it in a variable
   const questionIndex = Math.floor(Math.random() * availableQuestions.length);
+  console.log(questionIndex);
+  // HUD //
+  // changing question number accordingly in DOM
+  progressText.innerText = `Question : ${questionCounter} / ${maxQuestions}`;
   // use the random number to select an object from the array and store it in a variable
   currentQuestion = availableQuestions[questionIndex];
   // get the string from the question property from the object and insert into the Element h2 with the id of 'question'
   question.innerText = currentQuestion.question;
 
   // // CHANGE THE OPTIONS ACCORDING TO THE QUESTION WE GET // //
+
   // Loop into every elements form array
   choices.forEach((choice) => {
     // store the dataset value of each element in a variable
@@ -82,13 +84,13 @@ getNewQuestion = () => {
   });
   //finaly Delete the question from the array using splice
   availableQuestions.splice(questionIndex, 1);
-  acceptIngAnswer = true;
+  acceptingAnswer = true;
 };
 
 choices.forEach((choice) => {
   choice.addEventListener("click", (e) => {
-    if (!acceptIngAnswer) return;
-    acceptIngAnswer = false;
+    if (!acceptingAnswer) return;
+    acceptingAnswer = false;
     //  Select the element where the event happen and store
     const selectedChoice = e.target;
     // console.log(selectedChoice);
