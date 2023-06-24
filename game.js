@@ -53,6 +53,7 @@ startGame = () => {
 getNewQuestion = () => {
   // check if we crossed the maximum question limit and if the array is empty
   if (availableQuestions.length === 0 || questionCounter >= maxQuestions) {
+    localStorage.setItem("mostRecentScore", score);
     // if so terminate the function and locate to different page
     return window.location.assign("end.html");
   }
