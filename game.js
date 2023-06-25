@@ -62,12 +62,13 @@ getNewQuestion = () => {
 
   // increse the counter + 1
   questionCounter++;
-  // get a random number and store it in a variable
-  const questionIndex = Math.floor(Math.random() * availableQuestions.length);
-  console.log(questionIndex);
   // HUD //
   // changing question number accordingly in DOM
   progressText.innerText = `Question : ${questionCounter} / ${maxQuestions}`;
+  // update the progress bar
+  progressBarFull.style.width = `${(questionCounter / maxQuestions) * 100}%`;
+  // get a random number and store it in a variable
+  const questionIndex = Math.floor(Math.random() * availableQuestions.length);
   // use the random number to select an object from the array and store it in a variable
   currentQuestion = availableQuestions[questionIndex];
   // get the string from the question property from the object and insert into the Element h2 with the id of 'question'
@@ -104,9 +105,6 @@ choices.forEach((choice) => {
     // Increase score if the condition is correct
     if (classToApply === "Correct") {
       incrementScore(currentBonus);
-      progressBarFull.style.width = `${
-        (questionCounter / maxQuestions) * 100
-      }%`;
     }
     // Adding the class in its parent element to change its style property
     selectedChoice.parentElement.classList.add(classToApply);
