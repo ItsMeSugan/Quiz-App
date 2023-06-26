@@ -123,9 +123,12 @@ form {
 input {
   margin-bottom: 1rem;
   height: 4rem;
-  /* border: 1px solid #56a5eb; */
   box-shadow: 0 0.5rem 1rem #56a5eb;
   border: none;
+  font-size: 2.4rem;
+  align-content: center;
+  text-align: center;
+  text-transform: capitalize;
 }
 
 input::placeholder {
