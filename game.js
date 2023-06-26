@@ -14,7 +14,9 @@ let availableQuestions = [];
 
 let questions = [];
 
-fetch("https://opentdb.com/api.php?amount=10&category=9&type=multiple")
+fetch(
+  "https://opentdb.com/api.php?amount=10&https://opentdb.com/api.php?amount=10&category=18&difficulty=easy&type=multiple=9&difficulty=easy&type=multiple"
+)
   .then((res) => {
     return res.json();
   })
@@ -27,7 +29,7 @@ fetch("https://opentdb.com/api.php?amount=10&category=9&type=multiple")
 
       const answerChoices = [...loadedQuestion.incorrect_answers];
       // console.log(answerChoices);
-      formattedQuestion.answer = Math.floor(Math.random() * 9) + 1;
+      formattedQuestion.answer = Math.floor(Math.random() * 4) + 1;
       answerChoices.splice(
         formattedQuestion.answer - 1,
         0,
@@ -49,7 +51,7 @@ fetch("https://opentdb.com/api.php?amount=10&category=9&type=multiple")
 // constant //
 
 const currentBonus = 10;
-const maxQuestions = 5;
+const maxQuestions = 10;
 
 startGame = () => {
   questionCounter = 0;
@@ -107,10 +109,11 @@ choices.forEach((choice) => {
     const selectedChoice = e.target;
     console.log(selectedChoice);
     const selectedAnswer = selectedChoice.dataset["number"];
+    console.log(selectedAnswer);
+    console.log(currentQuestion.answer);
     //  Using ternary to find the correct answer
     const classToApply =
       currentQuestion.answer == selectedAnswer ? "Correct" : "InCorrect";
-
     // HUD //
     // Increase score if the condition is correct
     if (classToApply === "Correct") {
@@ -118,11 +121,11 @@ choices.forEach((choice) => {
     }
     // Adding the class in its parent element to change its style property
     selectedChoice.parentElement.classList.add(classToApply);
-    // After 1 sec removing the class in its parent element to change its style property and call the function to get the next question
+    // After 1 sec removing the class in its parent element to change its style property and call the function to get the next questionn after a setTimeout
     setTimeout(() => {
       selectedChoice.parentElement.classList.remove(classToApply);
       getNewQuestion();
-    }, 1000);
+    }, 800);
   });
 });
 
